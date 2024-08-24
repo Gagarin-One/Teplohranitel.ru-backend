@@ -14,21 +14,21 @@ app.use(express.json())
 
 app.post('/', async (req, res) => {
 
-   const { name, phoneNumber, size, modelType, color } = req.body;
+    const { name, phoneNumber, size, modelType, color } = req.body;
     console.log(req.body)
     const chatId = '704830988';
     const url = "https://api.telegram.org/bot7320341686:AAEsJR4OmqOz3zczjcnahy854A12olpazU8/sendMessage";
 
     function getRandomInt(max) {
-      return Math.floor(Math.random() * max);
+        return Math.floor(Math.random() * max);
     }
-    
-   
+
+
     let number = getRandomInt(5000)
 
 
     // Убедитесь, что сообщение присутствует
-    if (!name || !phoneNumber || !size || !modelType || !color ) {
+    if (!name || !phoneNumber || !size || !modelType || !color) {
         return res.status(400).json({ success: false, name: 'name is required' });
     }
 
