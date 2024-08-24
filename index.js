@@ -6,10 +6,7 @@ const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors({
-    origin: 'https://teplohranitel-avto.ru', // замените на URL вашего клиента
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // разрешенные методы
-}))
+app.use(cors())
 app.use(express.json())
 
 
