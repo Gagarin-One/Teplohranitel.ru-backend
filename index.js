@@ -48,6 +48,12 @@ app.post('/', async (req, res) => {
 });
 
 
+app.get('/api', (req, res) => {
+    res.send('API работает!');
+});
+app.get('/', (req, res) => {
+    res.send('API работает!');
+});
 
 
 
