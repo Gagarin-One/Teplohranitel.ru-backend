@@ -14,8 +14,8 @@ app.use(express.json())
 
 app.post('/', async (req, res) => {
 
-    const { name, phoneNumber, size, modelType, color} = req.body;
-
+    const { name, phoneNumber, size, modelType, color, carBody } = req.body;
+    console.log(req.body)
     const chatId = '-4504987606';
     const url = "https://api.telegram.org/bot7320341686:AAEsJR4OmqOz3zczjcnahy854A12olpazU8/sendMessage";
 
@@ -29,13 +29,13 @@ app.post('/', async (req, res) => {
 
     // Убедитесь, что сообщение присутствует
     if (!name || !phoneNumber || !size || !modelType || !color) {
-        return res.status(400).json({ success: false, name: 'name is required' });
+        return res.status(400).json({ success: false, name: 'Все поля обязательны' });
     }
 
     try {
         const response = await axios.post(url, {
             chat_id: chatId,
-            text: `Заказ:#${number}, Пользователь:${name}, Номер телефона:${phoneNumber}, Размер:${size}, Модель:${modelType}, Цвет:${color}`
+            text: `Заказ:#${number}, Пользователь:${name}, Номер телефона:${phoneNumber}, Размер:${size}, Модель:${modelType}, Цвет:${color}, Кузов(если есть):${carBody}`
         });
         res.status(200).json({ success: true, data: response.data });
     } catch (error) {
