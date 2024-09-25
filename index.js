@@ -33,10 +33,18 @@ app.post('/', async (req, res) => {
     }
 
     try {
+
+
+        // Формируем текст сообщения в зависимости от наличия carBody
+        const messageText = `Заказ:#${number}, Пользователь:${name}, Номер телефона:${phoneNumber}, Размер:${size}, Модель:${modelType}, Цвет:${color}` +
+        (carBody ? `, Кузов:${carBody}` : '');
+
         const response = await axios.post(url, {
             chat_id: chatId,
-            text: `Заказ:#${number}, Пользователь:${name}, Номер телефона:${phoneNumber}, Размер:${size}, Модель:${modelType}, Цвет:${color}, Кузов(если есть):${carBody}`
+            text: messageText
         });
+
+
         res.status(200).json({ success: true, data: response.data });
     } catch (error) {
         console.error('Error sending message to Telegram:', error);
